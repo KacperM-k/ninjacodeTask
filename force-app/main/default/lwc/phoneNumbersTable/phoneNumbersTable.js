@@ -6,6 +6,9 @@ import insertContact from "@salesforce/apex/PhoneNumbersTableController.insertCo
 import updateContact from "@salesforce/apex/PhoneNumbersTableController.updateContact";
 import deleteContact from "@salesforce/apex/PhoneNumbersTableController.deleteContact";
 //labels
+import ADD_CONTACT from '@salesforce/label/c.Add_Contact';
+import EDIT from '@salesforce/label/c.Edit';
+import DELETE from '@salesforce/label/c.Delete';
 import FIRST_NAME from '@salesforce/label/c.First_Name';
 import LAST_NAME from '@salesforce/label/c.Last_Name';
 import EMAIL from '@salesforce/label/c.Email';
@@ -13,8 +16,10 @@ import PHONE from '@salesforce/label/c.Phone';
 import ADDRESS from '@salesforce/label/c.Address';
 import INDEX from '@salesforce/label/c.Index';
 import CREATED_DATE from '@salesforce/label/c.Created_Date';
-    
+
 const label = {
+    EDIT,
+    DELETE,
     FIRST_NAME,
     LAST_NAME,
     EMAIL,
@@ -25,8 +30,8 @@ const label = {
  };
 
 const actions = [
-    { label: 'Edit', name: 'edit' },
-    { label: 'Delete', name: 'delete' },
+    { label: label.EDIT, name: 'edit' },
+    { label: label.DELETE, name: 'delete' },
 ];
 
 const columns = [
@@ -41,6 +46,7 @@ const columns = [
 ];
 
 export default class PhoneNumbersTable extends LightningElement {
+    label = {ADD_CONTACT};
 
     @track data = [];
     columns = columns;
