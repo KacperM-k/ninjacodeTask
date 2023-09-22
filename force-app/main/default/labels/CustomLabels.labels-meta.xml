@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Address</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
+        <fullName>Create_new_contact</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Create_new_contact</shortDescription>
+        <value>Create new contact</value>
+    </labels>
+    <labels>
+        <fullName>Created_Date</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Created_Date</shortDescription>
+        <value>Created Date</value>
+    </labels>
+    <labels>
+        <fullName>Edit_Contact</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Edit_Contact</shortDescription>
+        <value>Edit Contact</value>
+    </labels>
+    <labels>
+        <fullName>Email</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>First_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>First_Name</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>Index</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Index</shortDescription>
+        <value>Index</value>
+    </labels>
+    <labels>
+        <fullName>Last_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Last_Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>Phone</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+</CustomLabels>

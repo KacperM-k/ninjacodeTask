@@ -1,0 +1,31 @@
+<template>
+    <div class="new-contact-button">
+        <lightning-button label="New Contact" onclick={handleNewContact}></lightning-button>
+    </div>
+    <lightning-datatable
+            key-field="id"
+            columns={columns}
+            data={data}
+            hide-checkbox-column
+            default-sort-direction={defaultSortDirection}
+            sorted-direction={sortDirection}
+            sorted-by={sortedBy}
+            onsort={onHandleSort}
+            onrowaction={handleRowAction}>
+    </lightning-datatable>
+    <c-contact-modal
+        show-contact-modal={showContactModal}
+        new-contact-modal={newContactModal}
+        edit-contact-modal={editContactModal}
+        contact-to-edit={contactToEdit}
+        onclose={closeContactModal}
+        oncreatecontact={createContact}
+        oneditcontact={editContact}>
+    </c-contact-modal>
+    <c-delete-contact-modal
+        show-delete-modal={showDeleteModal}
+        success-delete-modal={successDeleteModal}
+        error-delete-modal={errorDeleteModal}
+        onclose={closeModal}>
+    </c-delete-contact-modal>
+</template>
