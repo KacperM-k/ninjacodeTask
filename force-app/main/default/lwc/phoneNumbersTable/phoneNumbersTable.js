@@ -82,7 +82,8 @@ export default class PhoneNumbersTable extends LightningElement {
 
     createContact(event){
         let contact = event.detail;
-        insertContact({contact: JSON.stringify(contact)})
+        if(contact){
+            insertContact({contact: JSON.stringify(contact)})
                     .then(((result) => {
                         this.showContactModal = false;
                         this.newContactModal = false;
@@ -94,12 +95,14 @@ export default class PhoneNumbersTable extends LightningElement {
                         this.newContactModal = false;
                         this.showWarningToast();
                     })
+        }
     }
 
     editContact(event){
         let contact = event.detail;
         let contactId = contact.id;
-        updateContact({contactId: contactId, updatedFields: JSON.stringify(contact)})
+        if(contact && contactId){
+            updateContact({contactId: contactId, updatedFields: JSON.stringify(contact)})
                     .then(((result) => {
                         this.showContactModal = false;
                         this.editContactModal = false;
@@ -111,14 +114,17 @@ export default class PhoneNumbersTable extends LightningElement {
                         this.newConeditContactModaltactModal = false;
                         this.showWarningToast();
                     })
+        }
     }
 
     getContactToEdit(id){
-        this.data.forEach(contact =>{
-            if(contact.id == id){
-                this.contactToEdit = contact;
-            }
-        });
+        if(id){
+            this.data.forEach(contact =>{
+                if(contact.id == id){
+                    this.contactToEdit = contact;
+                }
+            });
+        }
     }
 
     handleRowAction(event) {
