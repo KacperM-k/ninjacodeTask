@@ -70,7 +70,7 @@ export default class PhoneNumbersTable extends LightningElement {
                 this.data = this.prepareContactsData(result);
             }))
             .catch((error) => {
-                this.showWarningToast();
+                this.showErrorToast();
             })
     }
 
@@ -102,7 +102,7 @@ export default class PhoneNumbersTable extends LightningElement {
                     .catch((error) => {
                         this.showContactModal = false;
                         this.newContactModal = false;
-                        this.showWarningToast();
+                        this.showErrorToast();
                     })
         }
     }
@@ -121,7 +121,7 @@ export default class PhoneNumbersTable extends LightningElement {
                     .catch((error) => {
                         this.showContactModal = false;
                         this.newConeditContactModaltactModal = false;
-                        this.showWarningToast();
+                        this.showErrorToast();
                     })
         }
     }
@@ -146,7 +146,7 @@ export default class PhoneNumbersTable extends LightningElement {
                     }))
                     .catch((error) => {
                         this.showDeleteModal = false;
-                        this.showWarningToast();
+                        this.showErrorToast();
                     })
     }
 
@@ -167,7 +167,7 @@ export default class PhoneNumbersTable extends LightningElement {
                         this.showSuccessToast();
                     }))
                     .catch((error) => {
-                        this.showWarningToast();
+                        this.showErrorToast();
                     })
                 break;
         }
@@ -189,7 +189,7 @@ export default class PhoneNumbersTable extends LightningElement {
 
     showSuccessToast(){
         const evt = new ShowToastEvent({
-            title: 'Toast Success',
+            title: 'Success',
             message: 'Opearion sucessful',
             variant: 'success',
             mode: 'dismissable'
@@ -197,11 +197,11 @@ export default class PhoneNumbersTable extends LightningElement {
         this.dispatchEvent(evt);
     }
 
-    showWarningToast() {
+    showErrorToast() {
         const evt = new ShowToastEvent({
-            title: 'Toast Warning',
-            message: 'Some problem',
-            variant: 'warning',
+            title: 'Error',
+            message: 'Something went wrong',
+            variant: 'error',
             mode: 'dismissable'
         });
         this.dispatchEvent(evt);
