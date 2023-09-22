@@ -4,7 +4,7 @@
             <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container" style="align-items: center;">
-                    <header class="slds-modal__header" style="min-width: 600px;">
+                    <header class="slds-modal__header" style="min-width: 1100px;">
                         <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
                             title="Close" onclick={handleClose}>
                             <lightning-icon icon-name="utility:close" alternative-text="close" variant="warning"></lightning-icon>
@@ -12,27 +12,29 @@
                         </button>
                         <div name="header">
                             <h2 class="slds-text-heading_medium slds-hyphenate">
-                                <div lwc:if={successDeleteModal}>
-                                    <p>Success</p>
-                                </div>
-                                <div lwc:if={errorDeleteModal}>
-                                    <p>Error</p>
-                                </div>
+                                <p>Delete Contacts</p>
                             </h2>
                         </div>
                     </header>
-                    <div class="slds-modal__content slds-p-around_medium" style="min-width: 600px;">
-                        <div lwc:if={successDeleteModal} name="body">
-                            <p>The contact has been successfully deleted</p>
-                        </div>
-                        <div lwc:if={errorDeleteModal} name="body">
-                            <p>Something went wrong</p>
+                    <div class="slds-modal__content slds-p-around_medium" style="min-width: 1100px;">
+                        <div style="height: 900px;">
+                            <lightning-datatable
+                                    key-field="Id"
+                                    data={tableData}
+                                    show-row-number-column
+                                    row-number-offset={rowOffset}
+                                    suppress-bottom-bar
+                                    columns={columns}>
+                            </lightning-datatable>
                         </div>
                     </div>
-                    <footer class="slds-modal__footer" style="min-width: 600px;"></footer>
+                    <footer class="slds-modal__footer" style="min-width: 1100px;">
+                        <lightning-button variant="brand" label={label.DELETE} onclick={deleteContacts} class="slds-m-left_x-small"></lightning-button>
+                    </footer>
                 </div>
             </section>
             <div class="slds-backdrop slds-backdrop_open"></div>
         </div>
     </template>
+    
 </template>

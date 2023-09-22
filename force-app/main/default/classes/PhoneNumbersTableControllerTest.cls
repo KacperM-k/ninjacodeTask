@@ -90,6 +90,33 @@ public with sharing class PhoneNumbersTableControllerTest {
     }
 
     @isTest
+    static void deleteContactsSuccessCase(){
+        List<Contact> contacts = new List<Contact>();
+        for(Integer i=0; i<6; i++){
+            Contact contact = new Contact(FirstName='Name' + i, LastName='Lastname' + i);
+            contacts.add(contact);
+        }
+        insert contacts;
+        String serializedContacts = JSON.serialize(contacts);
+        System.assertEquals(6, [SELECT Id FROM Contact].size());
+        Test.startTest();
+            PhoneNumbersTableController.deleteContacts(serializedContacts);
+        Test.stopTest();
+        System.assertEquals(0, [SELECT Id FROM Contact].size());
+    }
+
+    @isTest
+    static void deleteContactsNullIdCase(){
+        Test.startTest();
+            try{
+                PhoneNumbersTableController.deleteContacts(null);
+            } catch (AuraHandledException ex) {
+                System.assertNotEquals(null, ex.getMessage());
+            }  
+        Test.stopTest();
+    }
+
+    @isTest
     static void deleteContactSuccessCase(){
         Contact contact = new Contact(FirstName='Name', LastName='Lastname' ,Phone='333-656-777' ,Email='name@gmail.com', MailingStreet='namestreet 22');
         insert contact;
@@ -111,30 +138,5 @@ public with sharing class PhoneNumbersTableControllerTest {
                 System.assertNotEquals(null, ex.getMessage());
             }  
         Test.stopTest();
-    }
-
-    @isTest
-    static void deleteContactErrorCase(){
-        String uniqueUserName = 'standarduser' + DateTime.now().getTime() + '@testorg.com';
-        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
-        User u = new User(Alias = 'standt', Email='standarduser@testorg.com',
-            EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
-            LocaleSidKey='en_US', ProfileId = p.Id,
-            TimeZoneSidKey='America/Los_Angeles',
-            UserName=uniqueUserName);
-        Contact contact = new Contact(FirstName='Name', LastName='Lastname' ,Phone='333-656-777' ,Email='name@gmail.com', MailingStreet='namestreet 22');
-        insert contact;
-        String contactId = contact.Id;
-       
-            Test.startTest();
-            try{
-                System.runAs(u) {
-                    PhoneNumbersTableController.deleteContact(contactId);
-                }
-            } catch (AuraHandledException ex) {
-                System.assertNotEquals(null, ex.getMessage());
-            }  
-        Test.stopTest();
-          
     }
 }

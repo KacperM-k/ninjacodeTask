@@ -5,6 +5,7 @@ import getContactsList from "@salesforce/apex/PhoneNumbersTableController.getCon
 import insertContact from "@salesforce/apex/PhoneNumbersTableController.insertContact";
 import updateContact from "@salesforce/apex/PhoneNumbersTableController.updateContact";
 import deleteContact from "@salesforce/apex/PhoneNumbersTableController.deleteContact";
+import deleteContacts from "@salesforce/apex/PhoneNumbersTableController.deleteContacts";
 //labels
 import ADD_CONTACT from '@salesforce/label/c.Add_Contact';
 import EDIT from '@salesforce/label/c.Edit';
@@ -16,6 +17,7 @@ import PHONE from '@salesforce/label/c.Phone';
 import ADDRESS from '@salesforce/label/c.Address';
 import INDEX from '@salesforce/label/c.Index';
 import CREATED_DATE from '@salesforce/label/c.Created_Date';
+import DELETE_CONTACTS from '@salesforce/label/c.Delete_Contacts';
 
 const label = {
     EDIT,
@@ -46,7 +48,10 @@ const columns = [
 ];
 
 export default class PhoneNumbersTable extends LightningElement {
-    label = {ADD_CONTACT};
+    label = {
+        ADD_CONTACT,
+        DELETE_CONTACTS
+    };
 
     @track data = [];
     columns = columns;
@@ -58,8 +63,6 @@ export default class PhoneNumbersTable extends LightningElement {
     newContactModal = false;
     editContactModal = false;
     showDeleteModal = false;
-    successDeleteModal = false
-    errorDeleteModal = false;
     
     connectedCallback(){
         getContactsList()
@@ -133,6 +136,20 @@ export default class PhoneNumbersTable extends LightningElement {
         }
     }
 
+    deleteContacts(event){
+        let contacts = event.detail;
+        deleteContacts({contacts:  JSON.stringify(contacts)})
+                    .then(((result) => {
+                        this.showDeleteModal = false;
+                        this.connectedCallback();
+                        this.showSuccessToast();
+                    }))
+                    .catch((error) => {
+                        this.showDeleteModal = false;
+                        this.showWarningToast();
+                    })
+    }
+
     handleRowAction(event) {
         const actionName = event.detail.action.name;
         const row = event.detail.row;
@@ -147,22 +164,23 @@ export default class PhoneNumbersTable extends LightningElement {
                 deleteContact({contactId: id})
                     .then(((result) => {
                         this.connectedCallback();
-                        this.showDeleteModal = true;
-                        this.successDeleteModal = true;
+                        this.showSuccessToast();
                     }))
                     .catch((error) => {
-                        this.showDeleteModal = true;
-                        this.errorDeleteModal = true;
+                        this.showWarningToast();
                     })
                 break;
         }
     }
 
+    openDeleteModal(){
+        this.showDeleteModal = true;
+    }
+
     closeModal() {
         this.showDeleteModal = false;
-        this.successDeleteModal = false
-        this.errorDeleteModal = false;
     }
+
     closeContactModal(){
         this.showContactModal = false;
         this.newContactModal = false;

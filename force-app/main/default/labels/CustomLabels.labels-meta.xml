@@ -36,6 +36,13 @@
         <value>Delete</value>
     </labels>
     <labels>
+        <fullName>Delete_Contacts</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Delete_Contacts</shortDescription>
+        <value>Delete Contacts</value>
+    </labels>
+    <labels>
         <fullName>Edit</fullName>
         <language>en_US</language>
         <protected>true</protected>

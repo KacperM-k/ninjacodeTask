@@ -1,3 +1,6 @@
-.new-contact-button{
-    margin-bottom: 5px;
+.buttons{
+    display: flex;
+}
+.contact-button{
+    margin: 0px 5px 5px 0px;
 }

@@ -1,6 +1,11 @@
 <template>
-    <div class="new-contact-button">
-        <lightning-button label={label.ADD_CONTACT} onclick={handleNewContact}></lightning-button>
+    <div class="buttons">
+        <div class="contact-button">
+            <lightning-button label={label.ADD_CONTACT} onclick={handleNewContact}></lightning-button>
+        </div>
+        <div class="contact-button">
+            <lightning-button label={label.DELETE_CONTACTS} onclick={openDeleteModal}></lightning-button>
+        </div>
     </div>
     <lightning-datatable
             key-field="id"
@@ -22,10 +27,10 @@
         oncreatecontact={createContact}
         oneditcontact={editContact}>
     </c-contact-modal>
-    <c-delete-contact-modal
+    <c-delete-contacts-module
         show-delete-modal={showDeleteModal}
-        success-delete-modal={successDeleteModal}
-        error-delete-modal={errorDeleteModal}
-        onclose={closeModal}>
-    </c-delete-contact-modal>
+        table-data={data}
+        onclose={closeModal}
+        ondeletecontacts={deleteContacts}>
+    </c-delete-contacts-module>
 </template>

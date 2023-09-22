@@ -37,6 +37,21 @@ public with sharing class PhoneNumbersTableController {
         }
     }
 
+    //method o delete contacts by using delete module
+    @AuraEnabled
+    public static void deleteContacts(String contacts){
+        try {
+            if(String.isBlank(contacts)){
+                throw new AuraHandledException('Empty List');
+            }
+            List<Contact> contactsList = (List<Contact>)JSON.deserialize(contacts, List<Contact>.class);
+            delete contactsList;
+        } catch (Exception ex) {
+            throw new AuraHandledException(ex.getMessage());
+        }
+    }
+
+    //method to delete one contact by using action in table row
     @AuraEnabled
     public static void deleteContact(String contactId){
         try {
