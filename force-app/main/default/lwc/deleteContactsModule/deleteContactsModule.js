@@ -34,7 +34,6 @@ export default class DeleteContactsModule extends LightningElement {
     @api tableData;
     @api showDeleteModal;
     columns = columns;
-    rowOffset = 0;
 
     handleClose() {
         this.dispatchEvent(new CustomEvent('close'));
